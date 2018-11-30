@@ -139,11 +139,11 @@ userdata = """#!/bin/bash
 	sudo apt -y update
 	sudo apt install snapd
 	sudo apt install -y python-pip 
-	git clone https://github.com/vitoriahmc/projeto-cloud.git
+	git clone https://github.com/vitoriahmc/projetocloud.git
 	pip install boto3
 	pip install Flask
 	pip install requests
-	cd projeto-cloud
+	cd projetocloud
 	export FLASK_APP=lb.py
 	python -m flask run"""
 
@@ -153,11 +153,11 @@ userdata2 = """#!/bin/bash
 	sudo apt -y update
 	sudo apt install snapd
 	sudo apt install -y python-pip 
-	git clone https://github.com/vitoriahmc/projeto-cloud.git
+	git clone https://github.com/vitoriahmc/projetocloud.git
 	pip install boto3
 	pip install Flask
 	pip install requests
-	cd projeto-cloud
+	cd projetocloud
 	export FLASK_APP=WebServer.py
 	python -m flask run"""
 
