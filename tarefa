@@ -1,0 +1,26 @@
+#!/usr/bin/env 
+import sys
+import requests
+
+ip = 'http://54.159.105.79:5000/' 
+
+def quadrado(n):
+	
+	valor = '%s' % n
+
+	request = requests.post(ip, json=valor)
+
+if __name__ == "__main__":
+
+	tarefa = sys.argv[1]
+
+	if tarefa == "quadrado":
+
+		quadrado(sys.argv[2])
+
+	else:
+
+		print("Escreva quadrado e em seguida o numero que deseja elevar a 2.")
+			
+			
+			
