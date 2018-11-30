@@ -50,7 +50,7 @@ try:
 
 	response = client.delete_security_group(
 	    GroupName='APS-vi',
-	    GroupId='sg-0307765e186c152eb',
+	    GroupId='sg-0354a023290c37aa1',
 	    DryRun=False
 	)
 
