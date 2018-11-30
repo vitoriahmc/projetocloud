@@ -2,7 +2,7 @@
 import sys
 import requests
 
-ip = 'http://54.159.105.79:5000/' 
+ip = 'http://127.0.0.1:5000/' 
 
 def quadrado(n):
 	

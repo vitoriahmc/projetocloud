@@ -3,10 +3,14 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/Tarefa", methods=['POST'])
+@app.route("/Tarefa", methods=['POST', 'GET'])
 def tarefas():
 
-	if request.method == 'POST':
+	if request.method == 'GET':
+
+		pass
+
+	else:
 
 		try:
 
@@ -18,10 +22,6 @@ def tarefas():
 		except:
 
 		 	print("POST /Tarefa not ok")
-
-	else:
-
-		print("Erro")
 
 @app.route("/healthcheck/")
 def healthcheck():

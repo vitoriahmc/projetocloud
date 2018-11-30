@@ -198,8 +198,9 @@ def catch_all(path):
 
 			valor = request.get_json()
 			res = requests.post(endereco, json=valor)
+			print(res)
 
-			return res
+			return res.text
 
 		except:
 
