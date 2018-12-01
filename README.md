@@ -23,6 +23,7 @@ sudo snap install aws-cli --classic
 
 
 git clone https://github.com/vitoriahmc/projetocloud.git
+
 cd projetocloud
 
 
