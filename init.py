@@ -50,7 +50,7 @@ try:
 
 	response = client.delete_security_group(
 	    GroupName='APS-vi',
-	    GroupId='sg-0307765e186c152eb',
+	    GroupId='sg-0354a023290c37aa1',
 	    DryRun=False
 	)
 
@@ -132,34 +132,42 @@ def criaInstancia(user_data, n, ip_lista):
 		except:
 
 			print("Não criou a instancia")
-
-def criaUserdata(nome):
  
-	userdata = """#!/bin/bash
-		cd home
-		cd ubuntu
-		sudo apt -y update
-		sudo apt install snapd
-		sudo apt install -y python-pip 
-		git clone https://github.com/vitoriahmc/projeto-cloud.git
-		pip install Flask
-		pip install requests
-		pip install boto3
-		cd /projeto-cloud
-		export FLASK_APP={0}
-		python -m flask run""".format(nome)
+userdata = """#!/bin/bash
+	cd home
+	cd ubuntu
+	sudo apt -y update
+	sudo apt install snapd
+	sudo apt install -y python-pip 
+	git clone https://github.com/vitoriahmc/projetocloud.git
+	pip install boto3
+	pip install Flask
+	pip install requests
+	cd projetocloud
+	export FLASK_APP=lb.py
+	python -m flask run"""
 
-	return userdata
+userdata2 = """#!/bin/bash
+	cd home
+	cd ubuntu
+	sudo apt -y update
+	sudo apt install snapd
+	sudo apt install -y python-pip 
+	git clone https://github.com/vitoriahmc/projetocloud.git
+	pip install boto3
+	pip install Flask
+	pip install requests
+	cd projetocloud
+	export FLASK_APP=WebServer.py
+	python -m flask run"""
 
-userdata = criaUserdata("lb.py")
+for i in resources.instances.all():
 
-criaInstancia(userdata, 1, ip_instancias)
+	ip_instancias.append(i.public_ip_address)
 
 print("IP do LoadBalancer: ", ip_instancias[0])
 
 def healthcheck(ip_lista):
-
-	userdata = criaUserdata("WebServer.py")
 
 	while(True):
 
@@ -171,12 +179,12 @@ def healthcheck(ip_lista):
 
 		while len(ip_instancias) < 4:
 
-			criaInstancia(userdata,1,ip_instancias)
+			criaInstancia(userdata2,1,ip_instancias)
 
 		num = randint(1,len(ip_instancias)-1)
 		random_ip = ip_instancias[num]
 
-		endereco = "http://{0}:5000/Tarefa/".format(str(random_ip))
+		endereco = "http://{0}:5000/Tarefa".format(str(random_ip))
 
 threading.Thread(target=healthcheck, args = [ip_instancias]).start()
 
@@ -191,8 +199,9 @@ def catch_all(path):
 
 			valor = request.get_json()
 			res = requests.post(endereco, json=valor)
+			print(res)
 
-			return res
+			return res.text
 
 		except:
 

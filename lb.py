@@ -176,7 +176,7 @@ def healthcheck(ip_lista):
 
 				ip_instancias.remove(instance.public_ip_address)
 
-		while len(ip_instancias) < 2:
+		while len(ip_instancias) < 4:
 
 			criaInstancia(userdata2,1,ip_instancias)
 
