@@ -8,7 +8,7 @@ A requisição escolhida foi realizar uma operação matemática. Dessa maneira,
 
 
 
-Para rodar o programa, o usuário deve criar uma instância na AWS, entrar nela via SSH e rodar as seguinte linhas de comando:
+Para rodar o programa, o usuário deve criar uma instância na AWS, entrar nela via SSH e rodar as seguinte linhas de comando (init.sh):
 
 
 sudo apt -y update
@@ -31,7 +31,7 @@ Depois você deve entrar com suas credenciais na AWS com a seguinte linha de com
 
 aws configure
 
-Por fim, rode: 
+Por fim, rode (init_2.sh): 
 
 export FLASK_APP=init.py
 python -m flask run --host=0.0.0.0
